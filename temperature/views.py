@@ -21,9 +21,11 @@ def weather_info(request):
     max_temp= api['main']['temp_max']
     min_temp= api['main']['temp_min']
     city= api['name']
-    print(city)
     temp = Temperature.objects.create(_max_temp=max_temp, _min_temp=min_temp,
                                           _city=city)  # create a Weather object
     temp.save()  # save it
 
-    return render(request, 'index.html', {'api': api})
+
+def parse_api_data(request):
+    api_data = Temperature.objects.all()
+    return render(request, 'index.html', {'api': api_data})
