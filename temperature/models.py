@@ -7,8 +7,8 @@ from django.db import models
 # Create your models here.
 
 class Temperature(models.Model):
-    min_temp = models.FloatField(default=0)
     max_temp = models.FloatField(default=0)
+    min_temp = models.FloatField(default=0)
     average = models.FloatField(default=0, blank=True)
     median = models.FloatField(default=0, blank=True)
     city = models.CharField(max_length=255)

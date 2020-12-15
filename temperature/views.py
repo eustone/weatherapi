@@ -13,11 +13,12 @@ from .forms import TemperatureForm
 @api_view(['GET'])
 def weather_info(request):
     # get API info from Openweather
-    city_name = "Johannesburg"
+    city_name = "London"
     api_key = '70a590de7ccaf9c8b489ff228aadba16'
     open_api = f'https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api_key}'
     api_info = requests.get(open_api)
     api = api_info.json()
+    print(api)
     max_temp= api['main']['temp_max']
     min_temp= api['main']['temp_min']
     city= api['name']
