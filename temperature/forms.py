@@ -4,6 +4,6 @@ from .models import Temperature
 class TemperatureForm(ModelForm):
     class Meta:
         model = Temperature
-        fields = ['_city']
+        fields = ['city']
         widgets = {'name':TextInput(attrs={'class':'input','placeholder':'City Name'})}
 

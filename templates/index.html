@@ -28,7 +28,7 @@
                         <div class="field has-addons">
                             <div class="control is-expanded">
                                 <input class="input" type="text" placeholder="City Name">
-                                {{form.name}}
+
                             </div>
                             <div class="control">
                                 <button class="button is-info" type="submit">
@@ -54,12 +54,14 @@
                             </div>
                             <div class="media-content">
                                 <div class="content">
+
                                     <p>
-                                        <span class="title">Las Vegas</span>
+                                        <span class="title">{{api.city}}</span>
                                         <br>
-                                        <span class="subtitle">29° F</span>
+                                        <span class="subtitle">{{api.max_temp}}° F</span>
                                         <br> thunderstorm with heavy rain
                                     </p>
+
                                 </div>
                             </div>
                         </article>

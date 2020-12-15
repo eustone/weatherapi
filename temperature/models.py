@@ -7,30 +7,30 @@ from django.db import models
 # Create your models here.
 
 class Temperature(models.Model):
-    _min_temp = models.FloatField(default=0)
-    _max_temp = models.FloatField(default=0)
-    _average = models.FloatField(default=0, blank=True)
-    _median = models.FloatField(default=0, blank=True)
-    _city = models.CharField(max_length=255)
-    _time = models.DateTimeField(auto_now_add=True)
+    min_temp = models.FloatField(default=0)
+    max_temp = models.FloatField(default=0)
+    average = models.FloatField(default=0, blank=True)
+    median = models.FloatField(default=0, blank=True)
+    city = models.CharField(max_length=255)
+    time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self._city} {self._min_temp} " \
-               f"{self._max_temp} {self._average} " \
-               f"{self._median} {self._time}"
+        return f"{self.city} {self.min_temp} " \
+               f"{self.max_temp} {self.average} " \
+               f"{self.median} {self.time}"
 
     class Meta:
-        ordering = ['_time']
+        ordering = ['time']
 
 
 def max_temperature_receiver_function(sender, instance, *args, **kwargs):
-      if instance._max_temp and instance._min_temp:
-               instance._average = mean([instance._max_temp, instance._min_temp])
+      if instance.max_temp and instance.min_temp:
+               instance._average = mean([instance.max_temp, instance.min_temp])
 
 
 def min_temperature_receiver_function(sender, instance, *args, **kwargs):
-    if instance._max_temp and instance._min_temp:
-        instance._median = median([instance._max_temp, instance._min_temp])
+    if instance.max_temp and instance.min_temp:
+        instance._median = median([instance.max_temp, instance.min_temp])
 
 pre_save.connect(max_temperature_receiver_function, sender=Temperature)
 

@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from temperature.viewsets import TemperatureViewset
-from temperature.views import weather_info
+
 
 router = routers.DefaultRouter()
 router.register('temperature',TemperatureViewset)

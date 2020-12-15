@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import weather_info
+from temperature.views import parse_api_data
 
 urlpatterns = [
-    path('', weather_info, name='home')
+    path('', parse_api_data, name='home')
 ]
