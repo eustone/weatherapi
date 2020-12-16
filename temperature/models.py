@@ -25,12 +25,12 @@ class Temperature(models.Model):
 
 def average_temperature_receiver_function(sender, instance, *args, **kwargs):
     if instance.max_temp and instance.min_temp:
-        instance._average = mean([instance.max_temp, instance.min_temp])
+        instance.average = mean([instance.max_temp, instance.min_temp])
 
 
 def median_temperature_receiver_function(sender, instance, *args, **kwargs):
     if instance.max_temp and instance.min_temp:
-        instance._median = median([instance.max_temp, instance.min_temp])
+        instance.median = median([instance.max_temp, instance.min_temp])
 
 
 pre_save.connect(average_temperature_receiver_function, sender=Temperature)
