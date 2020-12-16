@@ -23,21 +23,16 @@ class Temperature(models.Model):
         ordering = ['time']
 
 
-def max_temperature_receiver_function(sender, instance, *args, **kwargs):
-      if instance.max_temp and instance.min_temp:
-               instance._average = mean([instance.max_temp, instance.min_temp])
+def average_temperature_receiver_function(sender, instance, *args, **kwargs):
+    if instance.max_temp and instance.min_temp:
+        instance._average = mean([instance.max_temp, instance.min_temp])
 
 
-def min_temperature_receiver_function(sender, instance, *args, **kwargs):
+def median_temperature_receiver_function(sender, instance, *args, **kwargs):
     if instance.max_temp and instance.min_temp:
         instance._median = median([instance.max_temp, instance.min_temp])
 
-pre_save.connect(max_temperature_receiver_function, sender=Temperature)
 
-pre_save.connect(min_temperature_receiver_function, sender=Temperature)
+pre_save.connect(average_temperature_receiver_function, sender=Temperature)
 
-
-
-
-
-
+pre_save.connect(median_temperature_receiver_function, sender=Temperature)

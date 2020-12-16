@@ -30,4 +30,5 @@ def weather_info(request):
 
 def parse_api_data(request):
     api_data = Temperature.objects.last()
+    print(api_data)
     return render(request, 'index.html', {'api': api_data})
