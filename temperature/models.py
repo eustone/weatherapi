@@ -11,13 +11,16 @@ class Temperature(models.Model):
     min_temp = models.FloatField(default=0)
     average = models.FloatField(default=0, blank=True)
     median = models.FloatField(default=0, blank=True)
+    description = models.CharField(max_length=255,default='sunny')
     city = models.CharField(max_length=255)
     time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.city} {self.min_temp} " \
                f"{self.max_temp} {self.average} " \
-               f"{self.median} {self.time}"
+               f"{self.median} {self.time}" \
+               f"{self.description}"
+
 
     class Meta:
         ordering = ['time']
