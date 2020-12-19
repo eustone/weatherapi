@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+{%extends 'base.html'%}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
-</head>
-
-<body>
-    <section class="hero is-primary">
+{%block content%}
+ <section class="hero is-primary">
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
@@ -23,24 +14,13 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-offset-4 is-4">
-                    <form method="POST">
-                        {%csrf_token%}
-                        <div class="field has-addons">
-                            <div class="control is-expanded">
-                                <input class="input" type="text" placeholder="City Name">
-
-                            </div>
-                            <div class="control">
-                                <button class="button is-info" type="submit">
-                                    Search City
-                                </button>
-                            </div>
-                        </div>
+                    {%include "includes/search.html"%}
                     </form>
                 </div>
             </div>
         </div>
     </section>
+
     <section class="section">
         <div class="container">
             <div class="columns">
@@ -56,14 +36,14 @@
                                 <div class="content">
 
                                     <p>
-                                        <span class="title">{{api.city}}</span>
+                                        <span class="title">{{city_weather.city}}</span>
                                         <br>
-                                        <span class="subtitle">{{api.max_temp}}° F Max</span><br>
-                                        <span class="subtitle">{{api.min_temp}}° F Min</spa><br>
-                                        <span class="subtitle">{{api.average}}° F Average</span><br>
-                                        <span class="subtitle">{{api.median}}° F Median</span> <br>
+                                        <span class="subtitle">{{city_weather.max_temp}}° F Max</span><br>
+                                        <span class="subtitle">{{city_weather.min_temp}}° F Min</spa><br>
+                                        <span class="subtitle">{{city_weather.average}}° F Average</span><br>
+                                        <span class="subtitle">{{city_weather.median}}° F Median</span> <br>
 
-                                        <br> {{api.description}}
+                                        <br> {{city_weather.description}}
                                     </p>
 
                                 </div>
@@ -74,8 +54,4 @@
             </div>
         </div>
     </section>
-    <footer class="footer">
-    </footer>
-</body>
-
-</html>
+{%endblock%}

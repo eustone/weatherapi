@@ -1,9 +1,7 @@
 from django.urls import path
-from temperature.views import parse_api_data, weather_info
+from temperature.views import index, search
 
 urlpatterns = [
-
-    path('', weather_info, name='weather_info'),
-    path('weather/', parse_api_data, name='home'),
-
-]
+    path('', index, name='home'),
+    path('search/', search, name='search'),
+    ]
