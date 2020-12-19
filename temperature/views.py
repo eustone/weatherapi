@@ -5,6 +5,7 @@ import json
 import requests
 from .serializers import TemperatureSerializer
 from .models import Temperature
+from .config import api_key
 from .forms import TemperatureForm
 
 
@@ -20,11 +21,12 @@ def index(request):
 @api_view(['GET'])
 def search(request):
     # get API info from Openweather
+    global api_key
     try:
         if 'city_name' in request.GET:
             city_name = request.GET.get('city_name')
-            api_key = '70a590de7ccaf9c8b489ff228aadba16'
-            open_api = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api_key}')
+            api_key = api_key
+            open_api = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city_name}&units=metric&appid={api_key}')
             api = open_api.json()
             max_temp = api['main']['temp_max']
             min_temp = api['main']['temp_min']
